@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useStore } from "@/context/StoreContext";
 
@@ -11,6 +11,22 @@ export default function CartDrawer() {
   const freeShippingThreshold = 1000;
   const progressToFreeShipping = Math.min(100, Math.round((subtotal / freeShippingThreshold) * 100));
   const amountNeeded = Math.max(0, freeShippingThreshold - subtotal);
+
+  useEffect(() => {
+    if (isCartOpen) {
+      document.body.style.overflow = "hidden";
+    }
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isCartOpen) {
+        setIsCartOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      if (isCartOpen) document.body.style.overflow = "auto";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isCartOpen, setIsCartOpen]);
 
   if (!isCartOpen) return null;
 
@@ -69,12 +85,13 @@ export default function CartDrawer() {
                 <p className="text-xs text-[#44403C] tracking-wide max-w-xs">
                   Discover timeless solid gold rings and fine necklaces handcrafted in our atelier.
                 </p>
-                <button
+                <Link
+                  href="/shop"
                   onClick={() => setIsCartOpen(false)}
-                  className="mt-4 px-8 py-3 bg-[#1C1917] text-[#FFFFFF] text-xs uppercase tracking-[0.2em] font-medium hover:bg-[#C9A66B] transition-colors"
+                  className="mt-4 inline-block px-8 py-3 bg-[#1C1917] text-[#FFFFFF] text-xs uppercase tracking-[0.2em] font-medium hover:bg-[#C9A66B] transition-colors"
                 >
                   Explore Collection
-                </button>
+                </Link>
               </div>
             ) : (
               cart.map((item) => (
@@ -117,6 +134,7 @@ export default function CartDrawer() {
                       <div className="flex items-center border border-[#D6D3D1]">
                         <button
                           onClick={() => updateQuantity(item.cartItemId, -1)}
+                          aria-label="Decrease quantity"
                           className="px-2.5 py-1 text-xs hover:bg-[#E8ECF0] transition-colors"
                         >
                           -
@@ -124,6 +142,7 @@ export default function CartDrawer() {
                         <span className="px-3 py-1 text-xs font-semibold">{item.quantity}</span>
                         <button
                           onClick={() => updateQuantity(item.cartItemId, 1)}
+                          aria-label="Increase quantity"
                           className="px-2.5 py-1 text-xs hover:bg-[#E8ECF0] transition-colors"
                         >
                           +

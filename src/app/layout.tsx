@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Aurelia Fine Jewelry | Solid Gold Rings & Necklaces",
     description: "Premium solid gold rings and necklaces designed with timeless elegance.",
-    url: "https://aureliajewelry.com",
+    url: "https://m19209.github.io/aurelia-fine-jewelry/",
     siteName: "Aurelia Fine Jewelry",
     images: [
       {
@@ -38,6 +38,12 @@ export const metadata: Metadata = {
     ],
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Aurelia Fine Jewelry | Solid Gold Rings & Necklaces",
+    description: "Premium solid gold rings and necklaces designed with timeless elegance.",
+    images: ["https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=80"],
   },
 };
 

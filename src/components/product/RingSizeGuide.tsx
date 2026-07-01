@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface RingSizeGuideProps {
   isOpen: boolean;
@@ -25,6 +25,22 @@ const SIZE_CONVERSIONS = [
 export default function RingSizeGuide({ isOpen, onClose, onSelectSize }: RingSizeGuideProps) {
   const [activeTab, setActiveTab] = useState<"estimator" | "conversion">("estimator");
   const [sliderMm, setSliderMm] = useState<number>(16.5);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    }
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      if (isOpen) document.body.style.overflow = "auto";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -71,7 +87,7 @@ export default function RingSizeGuide({ isOpen, onClose, onSelectSize }: RingSiz
           {activeTab === "estimator" ? (
             <div className="space-y-6 text-center">
               <p className="text-xs text-[#44403C] max-w-md mx-auto leading-relaxed">
-                Take an existing ring that fits nicely. Measure the **inner diameter** in millimeters across the widest center point and adjust the slider below.
+                Take an existing ring that fits nicely. Measure the <strong className="text-[#1C1917] font-semibold">inner diameter</strong> in millimeters across the widest center point and adjust the slider below.
               </p>
 
               {/* Interactive Circle Visualization */}
@@ -132,10 +148,10 @@ export default function RingSizeGuide({ isOpen, onClose, onSelectSize }: RingSiz
                   <span className="text-gray-500">Includes exact 1:1 scale cut-out circles for accurate sizing at home.</span>
                 </div>
                 <button
-                  onClick={() => alert("Downloading Aurelia_Printable_Ring_Sizer_1x1.pdf")}
+                  onClick={() => window.print()}
                   className="px-4 py-2 bg-[#1C1917] text-[#FFFFFF] text-[10px] uppercase tracking-widest hover:bg-[#C9A66B] transition-colors"
                 >
-                  Download PDF
+                  Print Sizing Sheet
                 </button>
               </div>
 

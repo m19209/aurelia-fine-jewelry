@@ -46,6 +46,8 @@ export default function ProductCarousel() {
           </div>
         </div>
 
+        <p className="sm:hidden text-[10px] text-[#44403C] uppercase tracking-widest mb-4">← Swipe horizontal to explore →</p>
+
         {/* Horizontal Carousel Track */}
         <div
           ref={scrollContainerRef}

@@ -114,13 +114,135 @@ export default function HomePage() {
       {/* 6. Press & Patron Testimonials */}
       <section id="journal" className="py-20 bg-[#FAFAF9] border-t border-[#D6D3D1]">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-8">
-          <span className="text-xs uppercase tracking-[0.3em] text-gray-400 font-medium">Critical Acclaim</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-[#C9A66B] font-medium">Critical Acclaim</span>
           <blockquote className="font-serif text-2xl sm:text-3xl italic text-[#1C1917] leading-relaxed">
             &ldquo;Aurelia proves that luxury doesn&apos;t require excess. Their solid gold ring silhouettes represent the pinnacle of modern minimalist jewelry design.&rdquo;
           </blockquote>
           <div className="text-xs uppercase tracking-[0.2em] text-[#C9A66B] font-semibold">
             — VOGUE ATELIER ARCHIVES
           </div>
+        </div>
+      </section>
+
+      {/* 7. Bespoke Sizing & Armored Shipping */}
+      <section className="py-24 bg-[#F8F3EA] border-t border-[#D6D3D1]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12">
+          
+          {/* Sizing Section */}
+          <div id="sizing" className="bg-[#FAFAF9] p-8 sm:p-12 border border-[#D6D3D1] space-y-6">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-[#C9A66B] font-semibold block">
+              Precision Fit
+            </span>
+            <h3 className="font-serif text-3xl text-[#1C1917]">Bespoke Ring Sizing</h3>
+            <p className="text-xs sm:text-sm text-[#44403C] leading-relaxed">
+              Every ring created in our atelier is cast specifically to standard US sizes ranging from 4 to 9. Should you require custom half or quarter sizing, our master jewelers offer one complimentary resizing within 60 days of acquisition.
+            </p>
+            <div className="pt-2">
+              <Link
+                href="/shop"
+                className="text-xs uppercase tracking-[0.2em] font-semibold text-[#1C1917] hover:text-[#C9A66B] border-b border-[#1C1917] pb-1 transition-colors"
+              >
+                Find Your Sizing in Shop →
+              </Link>
+            </div>
+          </div>
+
+          {/* Shipping Section */}
+          <div id="shipping" className="bg-[#FAFAF9] p-8 sm:p-12 border border-[#D6D3D1] space-y-6">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-[#C9A66B] font-semibold block">
+              Discrete & Insured
+            </span>
+            <h3 className="font-serif text-3xl text-[#1C1917]">Armored Courier Delivery</h3>
+            <p className="text-xs sm:text-sm text-[#44403C] leading-relaxed">
+              All domestic and international parcels are transported via private armored courier with full transit insurance. Delivery requires mandatory adult signature verification. Acquisitions exceeding $1,000 USD receive complimentary priority express transit.
+            </p>
+            <div className="pt-2">
+              <span className="text-[11px] uppercase tracking-wider text-[#44403C] block font-medium">
+                ✦ 14-Day Complimentary Atelier Returns
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 8. Atelier FAQ Section */}
+      <section id="faq" className="py-24 bg-[#FAFAF9] border-t border-[#D6D3D1]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="text-center space-y-2">
+            <span className="text-xs uppercase tracking-[0.3em] text-[#C9A66B] font-semibold">Knowledge Dossier</span>
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#1C1917]">Frequently Asked Questions</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="p-6 bg-[#F8F3EA] border border-[#D6D3D1] space-y-3">
+              <h4 className="font-serif text-lg text-[#1C1917] font-semibold">Why 100% Solid Gold?</h4>
+              <p className="text-xs text-[#44403C] leading-relaxed">
+                Unlike gold vermeil or plated brass that deteriorates quickly, solid 14k, 18k, and 22k gold never oxidizes, discolors skin, or loses structural integrity. It is an enduring investment.
+              </p>
+            </div>
+
+            <div className="p-6 bg-[#F8F3EA] border border-[#D6D3D1] space-y-3">
+              <h4 className="font-serif text-lg text-[#1C1917] font-semibold">What is the difference between 14k, 18k, and 22k?</h4>
+              <p className="text-xs text-[#44403C] leading-relaxed">
+                14k offers exceptional scratch resistance suited for daily stacking. 18k provides the classic warm European luster, while 22k features rich royal gold richness crafted for heirloom preservation.
+              </p>
+            </div>
+
+            <div className="p-6 bg-[#F8F3EA] border border-[#D6D3D1] space-y-3">
+              <h4 className="font-serif text-lg text-[#1C1917] font-semibold">How do I clean solid gold jewelry?</h4>
+              <p className="text-xs text-[#44403C] leading-relaxed">
+                Soak in lukewarm water with mild castile soap for 15 minutes, then gently brush with an ultra-soft natural bristle tool. Every purchase also includes lifetime atelier polishing.
+              </p>
+            </div>
+
+            <div className="p-6 bg-[#F8F3EA] border border-[#D6D3D1] space-y-3">
+              <h4 className="font-serif text-lg text-[#1C1917] font-semibold">Are your metals ethically sourced?</h4>
+              <p className="text-xs text-[#44403C] leading-relaxed">
+                Yes. 100% of our gold is RJC-certified recycled gold refined in ethical facilities, ensuring zero mining destruction or human exploitation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. Direct Atelier Contact */}
+      <section id="contact" className="py-24 bg-[#1C1917] text-[#FAFAF9]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div className="lg:col-span-6 space-y-6">
+            <span className="text-xs uppercase tracking-[0.35em] text-[#C9A66B] font-semibold">Private Concierge</span>
+            <h2 className="font-serif text-3xl sm:text-5xl text-[#FFFFFF]">Connect with the Atelier</h2>
+            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-md">
+              Whether arranging a private showroom viewing or collaborating on custom engravings, our private client directors are available at your service.
+            </p>
+            <div className="space-y-3 text-xs tracking-wider uppercase pt-4 border-t border-[#44403C]">
+              <div><strong className="text-[#C9A66B]">Concierge Desk:</strong> concierge@aureliajewelry.com</div>
+              <div><strong className="text-[#C9A66B]">Showroom Hours:</strong> Mon–Sat, 10am – 6pm EST</div>
+              <div><strong className="text-[#C9A66B]">Paris Atelier:</strong> 14 Rue de la Paix, 75002 Paris</div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-6 bg-[#201C18] p-8 border border-[#44403C]">
+            <form onSubmit={(e) => { e.preventDefault(); alert("Inquiry received. A Client Director will contact you within 4 business hours."); }} className="space-y-4">
+              <div>
+                <label className="block text-[10px] uppercase tracking-widest text-gray-400 mb-1">Patron Name</label>
+                <input required type="text" placeholder="Full Name" className="w-full bg-[#1C1917] border border-[#44403C] px-4 py-3 text-xs text-white focus:outline-none focus:border-[#C9A66B]" />
+              </div>
+              <div>
+                <label className="block text-[10px] uppercase tracking-widest text-gray-400 mb-1">Email Address</label>
+                <input required type="email" placeholder="client@domain.com" className="w-full bg-[#1C1917] border border-[#44403C] px-4 py-3 text-xs text-white focus:outline-none focus:border-[#C9A66B]" />
+              </div>
+              <div>
+                <label className="block text-[10px] uppercase tracking-widest text-gray-400 mb-1">Inquiry Nature</label>
+                <textarea required rows={3} placeholder="Describe your inquiry or sizing request..." className="w-full bg-[#1C1917] border border-[#44403C] px-4 py-3 text-xs text-white focus:outline-none focus:border-[#C9A66B]" />
+              </div>
+              <button type="submit" className="w-full py-3.5 bg-[#C9A66B] hover:bg-[#B89357] text-[#1C1917] text-xs uppercase tracking-[0.25em] font-bold transition-colors">
+                Transmit Dossier
+              </button>
+            </form>
+          </div>
+
         </div>
       </section>
     </div>

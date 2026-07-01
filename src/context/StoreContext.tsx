@@ -37,13 +37,15 @@ interface StoreContextType {
   resetFilters: () => void;
   isSearchOpen: boolean;
   setIsSearchOpen: (open: boolean) => void;
+  isWishlistOpen: boolean;
+  setIsWishlistOpen: (open: boolean) => void;
 }
 
 const initialFilters: FilterState = {
   category: 'All',
   styles: [],
   purities: [],
-  maxPrice: 3500,
+  maxPrice: 6000,
   sortBy: 'popularity',
   searchQuery: ''
 };
@@ -56,6 +58,8 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
   const [wishlist, setWishlist] = useState<string[]>([]);
   const [filters, setFilters] = useState<FilterState>(initialFilters);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   // Load from local storage on mount
   useEffect(() => {
@@ -65,29 +69,33 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         const savedWishlist = localStorage.getItem("aurelia_wishlist");
         if (savedCart) setCart(JSON.parse(savedCart));
         if (savedWishlist) setWishlist(JSON.parse(savedWishlist));
-      } catch (e) {
-        console.error("Failed to load store state from localStorage", e);
+      } catch {
+        // Silently ignore storage access errors in private/restricted modes
+      } finally {
+        setIsLoaded(true);
       }
     }, 0);
     return () => clearTimeout(timer);
   }, []);
 
-  // Save changes to local storage
+  // Save changes to local storage only after initial load completes
   useEffect(() => {
+    if (!isLoaded) return;
     try {
       localStorage.setItem("aurelia_cart", JSON.stringify(cart));
-    } catch (e) {
-      console.error("Failed to save cart to localStorage", e);
+    } catch {
+      // Ignore write errors
     }
-  }, [cart]);
+  }, [cart, isLoaded]);
 
   useEffect(() => {
+    if (!isLoaded) return;
     try {
       localStorage.setItem("aurelia_wishlist", JSON.stringify(wishlist));
-    } catch (e) {
-      console.error("Failed to save wishlist to localStorage", e);
+    } catch {
+      // Ignore write errors
     }
-  }, [wishlist]);
+  }, [wishlist, isLoaded]);
 
   const addToCart = (product: Product, purity: MetalPurity, size?: number) => {
     // Calculate price adjustment based on purity
@@ -108,7 +116,6 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
       }
     });
     setIsCartOpen(true);
-    console.log(`[Analytics Event] ADD_TO_CART: SKU=${product.sku}, Purity=${purity}, Price=$${unitPriceUSD}`);
   };
 
   const removeFromCart = (cartItemId: string) => {
@@ -163,6 +170,8 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         resetFilters,
         isSearchOpen,
         setIsSearchOpen,
+        isWishlistOpen,
+        setIsWishlistOpen,
       }}
     >
       {children}

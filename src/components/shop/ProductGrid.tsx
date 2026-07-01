@@ -161,8 +161,8 @@ export default function ProductGrid() {
             <input
               type="range"
               min="500"
-              max="3500"
-              step="100"
+              max="6000"
+              step="250"
               value={filters.maxPrice}
               onChange={(e) => setFilters((prev) => ({ ...prev, maxPrice: Number(e.target.value) }))}
               className="w-full accent-[#1C1917] bg-[#D6D3D1]"

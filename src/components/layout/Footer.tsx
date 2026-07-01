@@ -2,8 +2,10 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useStore } from "@/context/StoreContext";
 
 export default function Footer() {
+  const { setFilters } = useStore();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
@@ -39,10 +41,10 @@ export default function Footer() {
         <div className="md:col-span-2 space-y-3">
           <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-[#FFFFFF]">Atelier Catalog</h4>
           <ul className="space-y-2 text-xs text-gray-400 font-light">
-            <li><Link href="/shop" className="hover:text-[#C9A66B] transition-colors">All Collections</Link></li>
-            <li><Link href="/shop" className="hover:text-[#C9A66B] transition-colors">Solid Gold Rings</Link></li>
-            <li><Link href="/shop" className="hover:text-[#C9A66B] transition-colors">Fine Necklaces</Link></li>
-            <li><Link href="/shop?sort=newest" className="hover:text-[#C9A66B] transition-colors">New Arrivals</Link></li>
+            <li><Link href="/shop" onClick={() => setFilters(prev => ({ ...prev, category: 'All' }))} className="hover:text-[#C9A66B] transition-colors">All Collections</Link></li>
+            <li><Link href="/shop" onClick={() => setFilters(prev => ({ ...prev, category: 'Rings' }))} className="hover:text-[#C9A66B] transition-colors">Solid Gold Rings</Link></li>
+            <li><Link href="/shop" onClick={() => setFilters(prev => ({ ...prev, category: 'Necklaces' }))} className="hover:text-[#C9A66B] transition-colors">Fine Necklaces</Link></li>
+            <li><Link href="/shop?sort=newest" onClick={() => setFilters(prev => ({ ...prev, sortBy: 'newest' }))} className="hover:text-[#C9A66B] transition-colors">New Arrivals</Link></li>
           </ul>
         </div>
 

@@ -16,6 +16,7 @@ export default function CheckoutPage() {
   const [city, setCity] = useState("");
   const [zip, setZip] = useState("");
   const [shippingMethod, setShippingMethod] = useState<"standard" | "express">("standard");
+  const [orderId] = useState(() => Math.floor(10000 + Math.random() * 90000));
 
   const subtotal = cart.reduce((sum, item) => sum + item.unitPriceUSD * item.quantity, 0);
   const shippingCost = subtotal >= 1000 ? 0 : shippingMethod === "express" ? 75 : 45;
@@ -35,8 +36,29 @@ export default function CheckoutPage() {
     e.preventDefault();
     setStep("confirmation");
     clearCart();
-    console.log(`[Analytics Event] PURCHASE_COMPLETED: Total=$${total}, Items=${cart.length}`);
   };
+
+  if (cart.length === 0 && step !== "confirmation") {
+    return (
+      <div className="max-w-3xl mx-auto px-4 py-28 text-center space-y-6 animate-fadeIn">
+        <div className="w-16 h-16 rounded-full bg-[#E8ECF0] flex items-center justify-center text-2xl text-[#44403C] mx-auto">
+          ✦
+        </div>
+        <h1 className="font-serif text-3xl sm:text-4xl text-[#1C1917]">Your Atelier Bag is Empty</h1>
+        <p className="text-xs text-[#44403C] max-w-md mx-auto leading-relaxed tracking-wide">
+          Please select at least one solid gold piece from our catalog to proceed with checkout reservation.
+        </p>
+        <div>
+          <Link
+            href="/shop"
+            className="inline-block px-8 py-3.5 bg-[#1C1917] text-[#FFFFFF] text-xs uppercase tracking-[0.2em] font-medium hover:bg-[#C9A66B] transition-colors"
+          >
+            Explore Collection
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   if (step === "confirmation") {
     return (
@@ -48,7 +70,7 @@ export default function CheckoutPage() {
           <span className="text-xs uppercase tracking-[0.3em] text-[#C9A66B] font-semibold">Atelier Order Confirmed</span>
           <h1 className="font-serif text-4xl sm:text-5xl text-[#1C1917]">Thank You, {firstName || "Valued Patron"}</h1>
           <p className="text-sm text-[#44403C] max-w-lg mx-auto leading-relaxed">
-            Your reservation **#AUR-89241** has been securely transmitted to our master jewelers. A discreet confirmation and tracking dossier have been sent to **{email || "your email"}**.
+            Your reservation <strong className="text-[#1C1917] font-semibold">#AUR-{orderId}</strong> has been securely transmitted to our master jewelers. A discreet confirmation and tracking dossier have been sent to <strong className="text-[#1C1917] font-semibold">{email || "your email"}</strong>.
           </p>
         </div>
 
@@ -264,18 +286,18 @@ export default function CheckoutPage() {
                     <label className="block text-[10px] uppercase tracking-widest text-[#44403C] mb-1">Card Number</label>
                     <input
                       type="text"
-                      defaultValue="4532 •••• •••• 8812"
-                      className="w-full bg-[#F8F3EA] border border-[#D6D3D1] px-4 py-3 text-sm focus:outline-none"
+                      placeholder="4532 •••• •••• ••••"
+                      className="w-full bg-[#F8F3EA] border border-[#D6D3D1] px-4 py-3 text-sm focus:outline-none focus:border-[#C9A66B]"
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block text-[10px] uppercase tracking-widest text-[#44403C] mb-1">Expiration</label>
-                      <input type="text" defaultValue="08 / 28" className="w-full bg-[#F8F3EA] border border-[#D6D3D1] px-4 py-3 text-sm" />
+                      <input type="text" placeholder="MM / YY" className="w-full bg-[#F8F3EA] border border-[#D6D3D1] px-4 py-3 text-sm focus:outline-none focus:border-[#C9A66B]" />
                     </div>
                     <div>
                       <label className="block text-[10px] uppercase tracking-widest text-[#44403C] mb-1">Security Code (CVV)</label>
-                      <input type="text" defaultValue="918" className="w-full bg-[#F8F3EA] border border-[#D6D3D1] px-4 py-3 text-sm" />
+                      <input type="text" placeholder="CVV" className="w-full bg-[#F8F3EA] border border-[#D6D3D1] px-4 py-3 text-sm focus:outline-none focus:border-[#C9A66B]" />
                     </div>
                   </div>
                 </div>
