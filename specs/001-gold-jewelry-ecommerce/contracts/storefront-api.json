@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AureliaStorefrontAPI",
+  "description": "API Contracts for Product Catalog retrieval, Cart synchronization, and Checkout simulation.",
+  "paths": {
+    "/api/products": {
+      "get": {
+        "summary": "Retrieve catalog products with optional filtering and sorting",
+        "parameters": [
+          { "name": "category", "in": "query", "type": "string", "enum": ["Rings", "Necklaces"] },
+          { "name": "style", "in": "query", "type": "string" },
+          { "name": "purity", "in": "query", "type": "string" },
+          { "name": "sort", "in": "query", "type": "string", "enum": ["price_asc", "price_desc", "newest", "popularity"] }
+        ]
+      }
+    },
+    "/api/checkout": {
+      "post": {
+        "summary": "Process simulated PCI-compliant guest checkout order",
+        "body": {
+          "items": "Array of CartItems",
+          "shippingAddress": "ShippingAddress object",
+          "paymentMethodToken": "Simulated Stripe token string"
+        }
+      }
+    }
+  }
+}
