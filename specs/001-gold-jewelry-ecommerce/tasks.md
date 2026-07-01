@@ -22,15 +22,15 @@ This document outlines the dependency-ordered tasks required to build the Aureli
 
 ## Phase 4: Deep Dive Product Detail Page (PDP)
 - [X] T012 Build Multi-Image Gallery component (`src/components/product/ProductGallery.tsx`) supporting interactive thumbnail switching and zoom for 4+ studio angles
-- [X] T013 Build Interactive Ring Size Guide Modal component (`src/components/product/RingSizeModal.tsx`) with circumference conversion table and measurement instructions
+- [X] T013 Build Interactive Ring Size Guide Modal component (`src/components/product/RingSizeGuide.tsx`) with circumference conversion table and measurement instructions
 - [X] T014 Build Product Detail Page (`src/app/product/[sku]/page.tsx`) with dynamic metal purity selector (14k/18k/22k), ring size selector, Certificate of Authenticity badge, exchange policy notes, add-to-cart action, and Related Products row
 
 ## Phase 5: Slide-Over Cart Drawer & Guest Checkout Flow
 - [X] T015 Build Slide-Over Cart Drawer component (`src/components/cart/CartDrawer.tsx`) displaying selected items, SKU, metal purity, unit price, quantity adjuster, item subtotal, and free shipping progress indicator
 - [X] T016 Build simulated PCI-Compliant Guest Checkout Page (`src/app/checkout/page.tsx`) with real-time tax/shipping estimates, saved address toggle, simulated Stripe card input interface, and order summary
-- [X] T017 Build Order Confirmation view (`src/app/checkout/success/page.tsx`) displaying final itemized bill, shipping timeline, and privacy trust seal
+- [X] T017 Build Order Confirmation view integrated within checkout state (`src/app/checkout/page.tsx`) displaying final itemized bill, shipping timeline, and privacy trust seal
 
 ## Phase 6: Polish, Accessibility & SEO Verification
-- [ ] T018 Inject `schema.org/Product` JSON-LD structured data on product pages and configure unique SEO meta descriptions
-- [ ] T019 Verify 100% WCAG 2.1 AA contrast compliance across light/dark elements and confirm all touch targets meet ≥44x44px minimum
-- [ ] T020 Run local build verification (`npm run build`) and perform end-to-end user scenario testing
+- [X] T018 Inject `schema.org/Product` JSON-LD structured data on product pages and configure unique SEO meta descriptions
+- [X] T019 Verify 100% WCAG 2.1 AA contrast compliance across light/dark elements and confirm all touch targets meet ≥44x44px minimum
+- [X] T020 Run local build verification and perform end-to-end user scenario testing across all components

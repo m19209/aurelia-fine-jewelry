@@ -30,8 +30,34 @@ export default function ProductDetailPage() {
 
   const relatedProducts = PRODUCTS.filter((p) => p.sku !== product.sku && p.category === product.category).slice(0, 3);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    image: product.images.map((img) => img.url),
+    description: product.shortDescription,
+    sku: product.sku,
+    brand: {
+      "@type": "Brand",
+      name: "Aurelia Fine Jewelry",
+    },
+    offers: {
+      "@type": "Offer",
+      url: `https://m19209.github.io/aurelia-fine-jewelry/product/${product.sku}`,
+      priceCurrency: "USD",
+      price: currentPrice,
+      availability: product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+    },
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-fadeIn">
+      {/* Schema.org JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Breadcrumbs */}
       <nav className="flex items-center space-x-2 text-[10px] uppercase tracking-widest text-[#44403C] mb-8">
         <Link href="/" className="hover:text-[#1C1917]">Atelier</Link>
